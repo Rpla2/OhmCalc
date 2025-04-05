@@ -10,28 +10,6 @@ OhmCalc es una aplicación web interactiva que permite calcular **Voltaje (V)**,
 - Cálculos basados en las fórmulas de la Ley de Ohm y Potencia Eléctrica.
 - Interfaz moderna y fácil de usar.
 
-## Fórmulas Utilizadas
-
-### Potencia (P = Watts)
-- `P = I × V`
-- `P = V² / R`
-- `P = I² × R`
-
-### Voltaje (V = Volts)
-- `V = I × R`
-- `V = P / I`
-- `V = √(P × R)`
-
-### Corriente (I = Amperes)
-- `I = V / R`
-- `I = P / V`
-- `I = √(P / R)`
-
-### Resistencia (R = Ohms)
-- `R = V / I`
-- `R = V² / P`
-- `R = P / I²`
-
 ## Estructura del Proyecto
 ```
 OhmCalc
