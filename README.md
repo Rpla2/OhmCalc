@@ -47,8 +47,4 @@ OhmCalc
 - **CSS3:** Estilización de la interfaz.
 - **JavaScript:** Lógica para cálculos dinámicos.
 
-## Captura de Pantalla
-
-![OhmCalc](src/images/formulas.png)
-
 OhmCalc es una herramienta educativa diseñada para facilitar el aprendizaje y la resolución de problemas eléctricos básicos.
