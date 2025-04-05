@@ -1,0 +1,184 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8; /* Fondo claro */
+    color: #333333; /* Texto oscuro */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Header Styles */
+h1 {
+    align-self: flex-start;
+    margin: 20px;
+    padding: 10px 20px;
+    background-color: #4a90e2; /* Azul pastel */
+    color: #ffffff; /* Texto blanco */
+    border: 2px solid #4a90e2;
+    border-radius: 8px;
+    font-size: 24px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Description Styles */
+#description {
+    margin: 10px 0;
+    padding: 15px;
+    background-color: #fff8e1; /* Beige claro */
+    border: 1px solid #5d4037; /* Marrón suave */
+    border-radius: 8px;
+    font-size: 16px;
+    color: #5d4037; /* Texto marrón */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    text-align: center;
+}
+
+/* Main Layout */
+main {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px 0;
+}
+
+/* Form Styles */
+form {
+    background: #ffffff; /* Fondo blanco */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 45%;
+    color: #333333; /* Texto oscuro */
+    border: 1px solid #4a90e2; /* Azul pastel */
+    margin-bottom: 20px; /* Espaciado entre formularios */
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+select, input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #4a90e2; /* Azul pastel */
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #ffffff; /* Fondo blanco */
+    color: #333333; /* Texto oscuro */
+}
+
+/* Button Styles */
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4a90e2; /* Azul pastel */
+    color: #ffffff; /* Texto blanco */
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #357ABD; /* Azul más oscuro */
+}
+
+button.secondary {
+    margin-top: 10px;
+    background-color: #e57373; /* Rojo pastel */
+    color: #ffffff; /* Texto blanco */
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button.secondary:hover {
+    background-color: #d32f2f; /* Rojo más oscuro */
+}
+
+/* Button Container Styles */
+#ohmCalcForm button {
+    width: auto; /* Ajustar ancho automático */
+    padding: 10px 20px; /* Espaciado interno */
+    display: inline-block; /* Mostrar en línea */
+    margin-right: 10px; /* Espaciado entre botones */
+}
+
+#ohmCalcForm button:last-child {
+    margin-right: 0; /* Eliminar margen del último botón */
+}
+
+/* Formula Image Styles */
+#formulaImage {
+    width: 45%;
+    text-align: center;
+}
+
+#formulaImage img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #4a90e2; /* Azul pastel */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Result Styles */
+#result {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #e8f5e9; /* Verde claro */
+    border: 1px solid #2e7d32; /* Verde oscuro */
+    border-radius: 8px;
+    font-size: 16px;
+    color: #2e7d32; /* Texto verde oscuro */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 90%; /* Ajuste para mostrar resultados de ambos modos */
+    text-align: center;
+}
+
+/* Mode Selection Styles */
+#modeSelection {
+    margin: 20px 0;
+    text-align: center;
+}
+
+#modeSelection button {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #4a90e2; /* Azul pastel */
+    color: #ffffff; /* Texto blanco */
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#modeSelection button:hover {
+    background-color: #357ABD; /* Azul más oscuro */
+}
+
+/* Footer Styles */
+footer {
+    width: 100%;
+    background-color: #eceff1; /* Gris claro */
+    color: #333333; /* Texto oscuro */
+    text-align: center;
+    padding: 10px 0;
+    border-top: 2px solid #4a90e2; /* Azul pastel */
+    font-size: 14px;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}

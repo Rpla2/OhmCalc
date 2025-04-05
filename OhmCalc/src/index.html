@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OhmCalc - Calculadora de la Ley de Ohm</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+    <!-- Título principal -->
+    <h1>Calculadora de la Ley de Ohm</h1>
+
+    <!-- Descripción de la calculadora -->
+    <div id="description">
+        <p>Esta calculadora utiliza la Ley de Ohm y las fórmulas de potencia eléctrica para ayudarle a resolver problemas básicos de electricidad.</p>
+    </div>
+
+    <!-- Selección de modo -->
+    <div id="modeSelection">
+        <h2>Seleccione el modo de cálculo</h2>
+        <button type="button" onclick="showMode('mode1')">Selección</button>
+        <button type="button" onclick="showMode('mode2')">Ingreso de valores</button>
+    </div>
+
+    <!-- Contenedor de modos -->
+    <main id="modesContainer">
+        <!-- Modo 1: Selección de cálculo -->
+        <form id="ohmCalcForm" style="display: none;">
+            <h2>Seleccione qué desea calcular</h2>
+            <label for="calculationType">¿Qué desea calcular?</label>
+            <select id="calculationType" onchange="updateForm()">
+                <option value="" disabled selected>Seleccione una opción</option>
+                <option value="voltage">Calcular Voltaje (V)</option>
+                <option value="current">Calcular Corriente (I)</option>
+                <option value="resistance">Calcular Resistencia (R)</option>
+                <option value="power">Calcular Potencia (P)</option>
+            </select>
+
+            <div id="inputFields"></div>
+
+            <button type="button" onclick="calculate()">Calcular</button>
+            <button type="reset" class="secondary">Restablecer</button>
+        </form>
+
+        <!-- Modo 2: Ingreso de valores -->
+        <form id="allCalcForm" style="display: none;">
+            <h2>Ingrese al menos 2 valores</h2>
+            <label for="voltage">Voltaje (V):</label>
+            <input type="number" id="voltageAll" placeholder="Ingrese voltaje">
+            <label for="current">Corriente (I):</label>
+            <input type="number" id="currentAll" placeholder="Ingrese corriente">
+            <label for="resistance">Resistencia (R):</label>
+            <input type="number" id="resistanceAll" placeholder="Ingrese resistencia">
+            <label for="power">Potencia (P):</label>
+            <input type="number" id="powerAll" placeholder="Ingrese potencia">
+
+            <button type="button" onclick="calculateAll()">Calcular Todo</button>
+            <button type="reset" class="secondary">Restablecer</button>
+        </form>
+
+        <!-- Imagen de fórmulas -->
+        <div id="formulaImage">
+            <img src="images/formulas.png" alt="Fórmulas de la Ley de Ohm y Potencia Eléctrica">
+        </div>
+    </main>
+
+    <!-- Contenedor de resultados -->
+    <div id="result"></div>
+
+    <!-- Pie de página -->
+    <footer>
+        <p>© 2023 OhmCalc. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="scripts/app.js"></script>
+</body>
+</html>
