@@ -1,0 +1,267 @@
+/* General Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #E8F5E9; /* Verde claro calmante */
+    color: #1B5E20; /* Verde oscuro para texto */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Header */
+#mainHeader {
+    text-align: center;
+    background-color: #BBDEFB; /* Azul claro estimulante */
+    color: #0D47A1; /* Azul oscuro para texto */
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#mainHeader h1 {
+    font-size: 48px;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    animation: pulse 2s infinite;
+}
+
+#mainHeader p {
+    font-size: 18px;
+    margin: 10px 0 0;
+}
+
+/* Description */
+#description {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #FFF3E0; /* Naranja claro cálido */
+    border: 2px solid #FFAB40; /* Naranja intermedio */
+    border-radius: 12px;
+    font-size: 18px;
+    color: #BF360C; /* Naranja oscuro para texto */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    text-align: center;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+/* Calculation Content */
+#calculationContent {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 800px;
+}
+
+/* Estilo para los formularios */
+.calculationForm {
+    background: #E3F2FD; /* Azul claro */
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    border: 2px solid #64B5F6; /* Azul intermedio */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.calculationForm:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.calculationForm h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #0D47A1; /* Azul oscuro */
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.calculationForm label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #4A4A4A; /* Texto gris oscuro */
+}
+
+.calculationForm input, .calculationForm select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #A5D6A7; /* Verde intermedio */
+    border-radius: 6px;
+    font-size: 16px;
+    background-color: #E8F5E9; /* Verde claro */
+    color: #4A4A4A; /* Texto gris oscuro */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.calculationForm input:focus, .calculationForm select:focus {
+    border-color: #81C784; /* Verde más oscuro */
+    box-shadow: 0 0 8px rgba(129, 199, 132, 0.5);
+    outline: none;
+}
+
+/* Botones dentro del formulario */
+.calculationForm button {
+    width: 100%;
+    padding: 12px;
+    background-color: #FFECB3; /* Amarillo claro */
+    color: #FF6F00; /* Amarillo oscuro */
+    border: 2px solid #FFD54F; /* Amarillo intermedio */
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.calculationForm button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.3);
+    z-index: -1;
+    transition: left 0.3s ease;
+}
+
+.calculationForm button:hover::before {
+    left: 0;
+}
+
+.calculationForm button:hover {
+    background-color: #FFD54F; /* Amarillo intermedio */
+    border-color: #FFB300; /* Amarillo más oscuro */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+.calculationForm button.secondary {
+    margin-top: 10px;
+    background-color: #BBDEFB; /* Azul claro */
+    border: 2px solid #64B5F6; /* Azul intermedio */
+    color: #0D47A1; /* Azul oscuro */
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.calculationForm button.secondary:hover {
+    background-color: #64B5F6; /* Azul intermedio */
+    border-color: #1E88E5; /* Azul más oscuro */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Resultados dentro del formulario */
+.result {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #FFF9C4; /* Amarillo claro */
+    border: 1px solid #FFEE58; /* Amarillo intermedio */
+    border-radius: 8px;
+    font-size: 16px;
+    color: #F57F17; /* Amarillo oscuro */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.result:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Formula Section */
+#formulaSection {
+    margin: 20px 0;
+    text-align: center;
+}
+
+#formulaSection h2 {
+    color: #4A4A4A; /* Texto gris oscuro */
+}
+
+#formulaSection img {
+    max-width: 100%;
+    height: auto;
+    border: 2px solid #64B5F6; /* Azul intermedio */
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Circuit Diagram */
+#circuitDiagram {
+    margin: 20px 0;
+    text-align: center;
+}
+
+#circuitDiagram svg {
+    max-width: 100%;
+    height: auto;
+    background-color: #0D47A1; /* Azul oscuro */
+    border: 2px solid #64B5F6; /* Azul intermedio */
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+}
+
+#circuitDiagram text {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
+
+#circuitDiagram line {
+    stroke-width: 2;
+}
+
+#circuitDiagram rect, #circuitDiagram circle {
+    transform: scale(1);
+    fill: inherit;
+}
+
+/* Footer */
+#mainFooter {
+    width: 100%;
+    background-color: #C8E6C9; /* Verde claro */
+    color: #1B5E20; /* Verde oscuro */
+    text-align: center;
+    padding: 15px 0;
+    font-size: 14px;
+    margin-top: 20px;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Animaciones generales */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
