@@ -10,37 +10,86 @@ function updateForm() {
 
     inputFields.innerHTML = '';
 
+    // Opciones de unidad para cada magnitud
+    const unitOptions = {
+        voltage: `
+            <select id="voltageUnit">
+                <option value="V">V</option>
+                <option value="mV">mV</option>
+                <option value="kV">kV</option>
+            </select>
+        `,
+        current: `
+            <select id="currentUnit">
+                <option value="A">A</option>
+                <option value="mA">mA</option>
+                <option value="uA">μA</option>
+            </select>
+        `,
+        resistance: `
+            <select id="resistanceUnit">
+                <option value="ohm">Ω</option>
+                <option value="kohm">kΩ</option>
+                <option value="mohm">MΩ</option>
+            </select>
+        `
+    };
+
     switch (calculationType.value) {
         case 'voltage':
             inputFields.innerHTML = `
                 <label for="current">Corriente (I):</label>
-                <input type="number" id="current" placeholder="Ingrese corriente" required>
+                <div style="display:flex;gap:8px;">
+                    <input type="number" id="current" placeholder="Ingrese corriente" required>
+                    ${unitOptions.current}
+                </div>
                 <label for="resistance">Resistencia (R):</label>
-                <input type="number" id="resistance" placeholder="Ingrese resistencia" required>
+                <div style="display:flex;gap:8px;">
+                    <input type="number" id="resistance" placeholder="Ingrese resistencia" required>
+                    ${unitOptions.resistance}
+                </div>
             `;
             break;
         case 'current':
             inputFields.innerHTML = `
                 <label for="voltage">Voltaje (V):</label>
-                <input type="number" id="voltage" placeholder="Ingrese voltaje" required>
+                <div style="display:flex;gap:8px;">
+                    <input type="number" id="voltage" placeholder="Ingrese voltaje" required>
+                    ${unitOptions.voltage}
+                </div>
                 <label for="resistance">Resistencia (R):</label>
-                <input type="number" id="resistance" placeholder="Ingrese resistencia" required>
+                <div style="display:flex;gap:8px;">
+                    <input type="number" id="resistance" placeholder="Ingrese resistencia" required>
+                    ${unitOptions.resistance}
+                </div>
             `;
             break;
         case 'resistance':
             inputFields.innerHTML = `
                 <label for="voltage">Voltaje (V):</label>
-                <input type="number" id="voltage" placeholder="Ingrese voltaje" required>
+                <div style="display:flex;gap:8px;">
+                    <input type="number" id="voltage" placeholder="Ingrese voltaje" required>
+                    ${unitOptions.voltage}
+                </div>
                 <label for="current">Corriente (I):</label>
-                <input type="number" id="current" placeholder="Ingrese corriente" required>
+                <div style="display:flex;gap:8px;">
+                    <input type="number" id="current" placeholder="Ingrese corriente" required>
+                    ${unitOptions.current}
+                </div>
             `;
             break;
         case 'power':
             inputFields.innerHTML = `
                 <label for="voltage">Voltaje (V):</label>
-                <input type="number" id="voltage" placeholder="Ingrese voltaje" required>
+                <div style="display:flex;gap:8px;">
+                    <input type="number" id="voltage" placeholder="Ingrese voltaje" required>
+                    ${unitOptions.voltage}
+                </div>
                 <label for="current">Corriente (I):</label>
-                <input type="number" id="current" placeholder="Ingrese corriente" required>
+                <div style="display:flex;gap:8px;">
+                    <input type="number" id="current" placeholder="Ingrese corriente" required>
+                    ${unitOptions.current}
+                </div>
             `;
             break;
         default:
@@ -49,6 +98,29 @@ function updateForm() {
 
     // Esperar a que los inputs se agreguen al DOM antes de calcular
     setTimeout(calculate, 100);
+}
+
+// Función para convertir valores a la unidad base
+function convertToBase(value, unit, type) {
+    if (isNaN(value)) return NaN;
+    switch (type) {
+        case 'voltage':
+            if (unit === 'V') return value;
+            if (unit === 'mV') return value / 1000;
+            if (unit === 'kV') return value * 1000;
+            break;
+        case 'current':
+            if (unit === 'A') return value;
+            if (unit === 'mA') return value / 1000;
+            if (unit === 'uA') return value / 1_000_000;
+            break;
+        case 'resistance':
+            if (unit === 'ohm') return value;
+            if (unit === 'kohm') return value * 1000;
+            if (unit === 'mohm') return value * 1_000_000;
+            break;
+    }
+    return value;
 }
 
 // Calcula el resultado según el cálculo seleccionado (Modo 1)
@@ -84,54 +156,74 @@ function calculate() {
 
     try {
         switch (calculationType.value) {
-            case 'voltage':
+            case 'voltage': {
                 const currentV = parseFloat(document.getElementById('current')?.value);
+                const currentUnit = document.getElementById('currentUnit')?.value || 'A';
                 const resistanceV = parseFloat(document.getElementById('resistance')?.value);
-                if (isNaN(currentV) || isNaN(resistanceV)) throw new Error("Datos inválidos");
-                const voltage = currentV * resistanceV;
-                result = `Voltaje (V) = ${voltage} V`;
-                if (batteryResult) batteryResult.textContent = `${voltage} V (I = ${currentV} A, R = ${resistanceV} Ω)`;
-                if (svgV) svgV.textContent = `V = ${voltage} V`;
-                if (svgI) svgI.textContent = `I = ${currentV} A`;
-                if (svgR) svgR.textContent = `R = ${resistanceV} Ω`;
-                if (svgP) svgP.textContent = `P = ${voltage * currentV} W`;
+                const resistanceUnit = document.getElementById('resistanceUnit')?.value || 'ohm';
+                const currentBase = convertToBase(currentV, currentUnit, 'current');
+                const resistanceBase = convertToBase(resistanceV, resistanceUnit, 'resistance');
+                if (isNaN(currentBase) || isNaN(resistanceBase)) throw new Error("Datos inválidos");
+                const voltage = currentBase * resistanceBase;
+                result = `Voltaje (V) = ${voltage.toFixed(2)} V`;
+                if (batteryResult) batteryResult.textContent = `${voltage.toFixed(2)} V (I = ${currentBase.toFixed(2)} A, R = ${resistanceBase.toFixed(2)} Ω)`;
+                if (svgV) svgV.textContent = `V = ${voltage.toFixed(2)} V`;
+                if (svgI) svgI.textContent = `I = ${currentBase.toFixed(2)} A`;
+                if (svgR) svgR.textContent = `R = ${resistanceBase.toFixed(2)} Ω`;
+                if (svgP) svgP.textContent = `P = ${(voltage * currentBase).toFixed(2)} W`;
                 break;
-            case 'current':
+            }
+            case 'current': {
                 const voltageI = parseFloat(document.getElementById('voltage')?.value);
+                const voltageUnit = document.getElementById('voltageUnit')?.value || 'V';
                 const resistanceI = parseFloat(document.getElementById('resistance')?.value);
-                if (isNaN(voltageI) || isNaN(resistanceI)) throw new Error("Datos inválidos");
-                const current = voltageI / resistanceI;
-                result = `Corriente (I) = ${current} A`;
-                if (positiveCableResult) positiveCableResult.textContent = `${current} A (V = ${voltageI} V, R = ${resistanceI} Ω)`;
-                if (svgV) svgV.textContent = `V = ${voltageI} V`;
-                if (svgI) svgI.textContent = `I = ${current} A`;
-                if (svgR) svgR.textContent = `R = ${resistanceI} Ω`;
-                if (svgP) svgP.textContent = `P = ${voltageI * current} W`;
+                const resistanceUnit = document.getElementById('resistanceUnit')?.value || 'ohm';
+                const voltageBase = convertToBase(voltageI, voltageUnit, 'voltage');
+                const resistanceBase = convertToBase(resistanceI, resistanceUnit, 'resistance');
+                if (isNaN(voltageBase) || isNaN(resistanceBase)) throw new Error("Datos inválidos");
+                const current = voltageBase / resistanceBase;
+                result = `Corriente (I) = ${current.toFixed(2)} A`;
+                if (positiveCableResult) positiveCableResult.textContent = `${current.toFixed(2)} A (V = ${voltageBase.toFixed(2)} V, R = ${resistanceBase.toFixed(2)} Ω)`;
+                if (svgV) svgV.textContent = `V = ${voltageBase.toFixed(2)} V`;
+                if (svgI) svgI.textContent = `I = ${current.toFixed(2)} A`;
+                if (svgR) svgR.textContent = `R = ${resistanceBase.toFixed(2)} Ω`;
+                if (svgP) svgP.textContent = `P = ${(voltageBase * current).toFixed(2)} W`;
                 break;
-            case 'resistance':
+            }
+            case 'resistance': {
                 const voltageR = parseFloat(document.getElementById('voltage')?.value);
+                const voltageUnit = document.getElementById('voltageUnit')?.value || 'V';
                 const currentR = parseFloat(document.getElementById('current')?.value);
-                if (isNaN(voltageR) || isNaN(currentR)) throw new Error("Datos inválidos");
-                const resistance = voltageR / currentR;
-                result = `Resistencia (R) = ${resistance} Ω`;
-                if (bulbResult) bulbResult.textContent = `${resistance} Ω (V = ${voltageR} V, I = ${currentR} A)`;
-                if (svgV) svgV.textContent = `V = ${voltageR} V`;
-                if (svgI) svgI.textContent = `I = ${currentR} A`;
-                if (svgR) svgR.textContent = `R = ${resistance} Ω`;
-                if (svgP) svgP.textContent = `P = ${voltageR * currentR} W`;
+                const currentUnit = document.getElementById('currentUnit')?.value || 'A';
+                const voltageBase = convertToBase(voltageR, voltageUnit, 'voltage');
+                const currentBase = convertToBase(currentR, currentUnit, 'current');
+                if (isNaN(voltageBase) || isNaN(currentBase)) throw new Error("Datos inválidos");
+                const resistance = voltageBase / currentBase;
+                result = `Resistencia (R) = ${resistance.toFixed(2)} Ω`;
+                if (bulbResult) bulbResult.textContent = `${resistance.toFixed(2)} Ω (V = ${voltageBase.toFixed(2)} V, I = ${currentBase.toFixed(2)} A)`;
+                if (svgV) svgV.textContent = `V = ${voltageBase.toFixed(2)} V`;
+                if (svgI) svgI.textContent = `I = ${currentBase.toFixed(2)} A`;
+                if (svgR) svgR.textContent = `R = ${resistance.toFixed(2)} Ω`;
+                if (svgP) svgP.textContent = `P = ${(voltageBase * currentBase).toFixed(2)} W`;
                 break;
-            case 'power':
+            }
+            case 'power': {
                 const voltageP = parseFloat(document.getElementById('voltage')?.value);
+                const voltageUnit = document.getElementById('voltageUnit')?.value || 'V';
                 const currentP = parseFloat(document.getElementById('current')?.value);
-                if (isNaN(voltageP) || isNaN(currentP)) throw new Error("Datos inválidos");
-                const power = voltageP * currentP;
-                result = `Potencia (P) = ${power} W`;
-                if (batteryResult) batteryResult.textContent = `${power} W (V = ${voltageP} V, I = ${currentP} A)`;
-                if (svgV) svgV.textContent = `V = ${voltageP} V`;
-                if (svgI) svgI.textContent = `I = ${currentP} A`;
+                const currentUnit = document.getElementById('currentUnit')?.value || 'A';
+                const voltageBase = convertToBase(voltageP, voltageUnit, 'voltage');
+                const currentBase = convertToBase(currentP, currentUnit, 'current');
+                if (isNaN(voltageBase) || isNaN(currentBase)) throw new Error("Datos inválidos");
+                const power = voltageBase * currentBase;
+                result = `Potencia (P) = ${power.toFixed(2)} W`;
+                if (batteryResult) batteryResult.textContent = `${power.toFixed(2)} W (V = ${voltageBase.toFixed(2)} V, I = ${currentBase.toFixed(2)} A)`;
+                if (svgV) svgV.textContent = `V = ${voltageBase.toFixed(2)} V`;
+                if (svgI) svgI.textContent = `I = ${currentBase.toFixed(2)} A`;
                 if (svgR) svgR.textContent = "R = ?";
-                if (svgP) svgP.textContent = `P = ${power} W`;
+                if (svgP) svgP.textContent = `P = ${power.toFixed(2)} W`;
                 break;
+            }
             default:
                 result = "Tipo de cálculo no válido";
         }
