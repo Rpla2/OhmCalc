@@ -28,7 +28,6 @@ const currentCalculated = document.getElementById('current-calculated');
 const voltageDisplay = document.getElementById('voltage-display');
 const currentDisplay = document.getElementById('current-display');
 const resistanceDisplay = document.getElementById('resistance-display');
-const calculateBtn = document.getElementById('calculate');
 const bulb = document.getElementById('bulb');
 
 /**
@@ -288,10 +287,9 @@ if (challengeQuestion) {
     generateChallenge();
 }
 
-// Listeners para sliders y botón de calcular corriente
+// Listeners para sliders
 voltageSlider.addEventListener('input', updateDisplays);
 resistanceSlider.addEventListener('input', updateDisplays);
-calculateBtn.addEventListener('click', updateDisplays);
 
 // Inicializa la visualización del simulador
 updateDisplays();
