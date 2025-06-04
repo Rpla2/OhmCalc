@@ -5,12 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ohm Calc - Aprende la Ley de Ohm</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles/style.css">
 </head>
 <body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100">
-    <!-- Dark mode toggle -->
+    <!-- Botón de alternancia de modo oscuro -->
     <div class="fixed top-4 right-4 z-50">
         <button id="themeToggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 shadow-md">
             <i class="fas fa-moon dark:hidden"></i>
@@ -18,7 +17,7 @@
         </button>
     </div>
 
-    <!-- Header -->
+    <!-- Encabezado principal -->
     <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-lg">
         <div class="container mx-auto px-4 py-6">
             <div class="flex flex-col md:flex-row justify-between items-center">
@@ -38,7 +37,7 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Sección principal (Hero) -->
     <section class="bg-gradient-to-b from-indigo-700 to-blue-600 text-white py-16">
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-4xl md:text-5xl font-bold mb-6">Descubre la <span class="text-yellow-300">Ley de Ohm</span></h2>
@@ -54,7 +53,7 @@
         </div>
     </section>
 
-    <!-- Ohm's Law Simulator -->
+    <!-- Sección del simulador de la Ley de Ohm -->
     <section id="simulator" class="py-16 bg-gray-100 dark:bg-gray-800">
         <div class="container mx-auto px-4">
             <h2 class="text-3xl font-bold mb-6 text-center">Simulador Interactivo</h2>
@@ -62,12 +61,12 @@
             <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg overflow-hidden max-w-4xl mx-auto">
                 <div class="p-6 md:p-8">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                        <!-- Circuit Visualization -->
+                        <!-- Visualización del circuito -->
                         <div class="relative">
                             <div class="bg-gray-100 dark:bg-gray-600 p-4 rounded-lg border-2 border-gray-300 dark:border-gray-500">
-                                <!-- Circuit SVG -->
+                                <!-- SVG del circuito -->
                                 <svg viewBox="0 0 300 200" class="w-full h-auto">
-                                    <!-- Battery -->
+                                    <!-- Batería -->
                                     <rect x="20" y="80" width="40" height="40" fill="none" stroke="#4f46e5" stroke-width="3"/>
                                     <line x1="60" y1="90" x2="70" y2="90" stroke="#4f46e5" stroke-width="3"/>
                                     <line x1="60" y1="110" x2="70" y2="110" stroke="#4f46e5" stroke-width="3"/>
@@ -75,42 +74,64 @@
                                     <line x1="30" y1="110" x2="50" y2="110" stroke="#4f46e5" stroke-width="3"/>
                                     <text x="40" y="75" fill="currentColor" font-size="10" text-anchor="middle">V</text>
                                     
-                                    <!-- First wire -->
+                                    <!-- Primer cable -->
                                     <path d="M70 100 H150" stroke="#4f46e5" stroke-width="3" fill="none"/>
                                     
                                     <!-- Resistor -->
                                     <rect x="150" y="85" width="40" height="30" fill="none" stroke="#4f46e5" stroke-width="3"/>
                                     <text x="170" y="110" fill="currentColor" font-size="10" text-anchor="middle">R</text>
                                     
-                                    <!-- Second wire -->
+                                    <!-- Segundo cable -->
                                     <path d="M190 100 H270" stroke="#4f46e5" stroke-width="3" fill="none"/>
                                     
-                                    <!-- Closing wire -->
+                                    <!-- Cable de cierre -->
                                     <path d="M270 100 V140 H20 V100" stroke="#4f46e5" stroke-width="3" fill="none" stroke-dasharray="4,2"/>
                                     
-                                    <!-- Ammeter -->
+                                    <!-- Amperímetro -->
                                     <circle cx="240" cy="100" r="15" fill="none" stroke="#4f46e5" stroke-width="3"/>
                                     <text x="240" y="105" fill="currentColor" font-size="10" text-anchor="middle">A</text>
                                     
-                                    <!-- Bulb -->
+                                    <!-- Foco -->
                                     <circle cx="110" cy="150" r="15" fill="#fbbf24" class="bulb-glow" style="opacity: 0.8" id="bulb"/>
                                     <path d="M110 135 L110 125 L100 120" stroke="#4f46e5" stroke-width="2" fill="none"/>
                                     <path d="M110 135 L110 125 L120 120" stroke="#4f46e5" stroke-width="2" fill="none"/>
                                     <path d="M110 165 L110 175 L100 180" stroke="#4f46e5" stroke-width="2" fill="none"/>
                                     <path d="M110 165 L110 175 L120 180" stroke="#4f46e5" stroke-width="2" fill="none"/>
                                     
-                                    <!-- Electrons -->
+                                    <!-- Definición del camino del circuito -->
+                                    <path id="circuit-path" d="M60 100 H150 M190 100 H270 V140 H20 V100 H60" stroke="none" fill="none"/>
+                                    <!-- Electrones animados -->
                                     <g id="electrons">
-                                        <circle cx="50" cy="100" r="3" fill="#9333ea" class="electron" style="animation-delay: 0s"/>
-                                        <circle cx="50" cy="100" r="3" fill="#9333ea" class="electron" style="animation-delay: 0.4s"/>
-                                        <circle cx="50" cy="100" r="3" fill="#9333ea" class="electron" style="animation-delay: 0.8s"/>
-                                        <circle cx="50" cy="100" r="3" fill="#9333ea" class="electron" style="animation-delay: 1.2s"/>
-                                        <circle cx="50" cy="100" r="3" fill="#9333ea" class="electron" style="animation-delay: 1.6s"/>
+                                        <circle r="3" fill="#9333ea">
+                                            <animateMotion dur="2s" repeatCount="indefinite">
+                                                <mpath xlink:href="#circuit-path"/>
+                                            </animateMotion>
+                                        </circle>
+                                        <circle r="3" fill="#9333ea">
+                                            <animateMotion dur="2s" repeatCount="indefinite" begin="0.4s">
+                                                <mpath xlink:href="#circuit-path"/>
+                                            </animateMotion>
+                                        </circle>
+                                        <circle r="3" fill="#9333ea">
+                                            <animateMotion dur="2s" repeatCount="indefinite" begin="0.8s">
+                                                <mpath xlink:href="#circuit-path"/>
+                                            </animateMotion>
+                                        </circle>
+                                        <circle r="3" fill="#9333ea">
+                                            <animateMotion dur="2s" repeatCount="indefinite" begin="1.2s">
+                                                <mpath xlink:href="#circuit-path"/>
+                                            </animateMotion>
+                                        </circle>
+                                        <circle r="3" fill="#9333ea">
+                                            <animateMotion dur="2s" repeatCount="indefinite" begin="1.6s">
+                                                <mpath xlink:href="#circuit-path"/>
+                                            </animateMotion>
+                                        </circle>
                                     </g>
                                 </svg>
                             </div>
                             
-                            <!-- Real-time values display -->
+                            <!-- Visualización de valores en tiempo real -->
                             <div class="grid grid-cols-3 gap-2 mt-6 text-center">
                                 <div class="bg-indigo-100 dark:bg-indigo-900 p-3 rounded-lg">
                                     <div class="text-indigo-800 dark:text-indigo-200 font-bold">Voltaje</div>
@@ -127,12 +148,12 @@
                             </div>
                         </div>
                         
-                        <!-- Controls -->
+                        <!-- Controles del simulador -->
                         <div>
                             <h3 class="text-xl font-semibold mb-4">Ajusta los parámetros</h3>
                             
                             <div class="space-y-6">
-                                <!-- Voltage slider -->
+                                <!-- Control deslizante de voltaje -->
                                 <div>
                                     <div class="flex justify-between mb-1">
                                         <label for="voltage" class="font-medium">Voltaje (V)</label>
@@ -149,7 +170,7 @@
                                     </div>
                                 </div>
                                 
-                                <!-- Resistance slider -->
+                                <!-- Control deslizante de resistencia -->
                                 <div>
                                     <div class="flex justify-between mb-1">
                                         <label for="resistance" class="font-medium">Resistencia (Ω)</label>
@@ -166,7 +187,7 @@
                                     </div>
                                 </div>
                                 
-                                <!-- Current (calculated) -->
+                                <!-- Visualización de la corriente calculada -->
                                 <div class="p-4 bg-blue-50 dark:bg-blue-900 rounded-lg">
                                     <div class="flex items-center justify-between">
                                         <div>
@@ -179,7 +200,7 @@
                                     </div>
                                 </div>
                                 
-                                <!-- Ohm's Law Formula -->
+                                <!-- Fórmula de la Ley de Ohm -->
                                 <div class="p-4 bg-purple-50 dark:bg-purple-900 rounded-lg">
                                     <div class="flex items-center">
                                         <div class="mr-4 text-3xl text-purple-600 dark:text-purple-300">
@@ -192,19 +213,11 @@
                                     </div>
                                 </div>
                                 
-                                <!-- Calculate button -->
+                                <!-- Botón para calcular la corriente -->
                                 <button id="calculate" class="w-full py-3 bg-gradient-to-r from-indigo-600 to-blue-500 hover:from-indigo-700 hover:to-blue-600 text-white font-bold rounded-lg shadow-md transition transform hover:scale-[1.02]">
                                     Calcular Corriente
                                 </button>
                             </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Graph Section -->
-                    <div class="mt-12">
-                        <h3 class="text-xl font-semibold mb-4">Relación Voltaje-Corriente</h3>
-                        <div class="bg-gray-50 dark:bg-gray-600 p-4 rounded-lg">
-                            <canvas id="ohmsChart" height="200"></canvas>
                         </div>
                     </div>
                 </div>
@@ -242,8 +255,9 @@
                 <!-- Card 2: Variables -->
                 <div class="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-gray-700 dark:to-gray-800 rounded-xl shadow-md overflow-hidden transition transform hover:scale-[1.02]">
                     <div class="p-6">
-                        <div class="text-amber-600 dark:text-amber-400 text-4xl mb-4">
-                            <i class="fas fa-variable"></i>
+                        <div class="text-amber-600 dark:text-amber-400 text-4xl mb-4 flex items-center">
+                            <i class="fas fa-sliders-h mr-2"></i>
+                            <span class="sr-only">Variables fundamentales</span>
                         </div>
                         <h3 class="text-xl font-bold mb-2">Variables fundamentales</h3>
                         <div class="space-y-3">
@@ -461,7 +475,18 @@
                 <!-- Badges -->
                 <div class="bg-white dark:bg-gray-700 rounded-xl shadow-md overflow-hidden">
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-4">Tus insignias</h3>
+                        <div class="flex items-center mb-4">
+                            <h3 class="text-xl font-bold mr-2">Tus insignias</h3>
+                            <button id="badges-info-btn" class="text-yellow-500 hover:text-yellow-700 focus:outline-none" title="¿Cómo funcionan las insignias?">
+                                <i class="fas fa-exclamation-circle"></i>
+                            </button>
+                            <!-- Resumen de progreso -->
+                            <span id="badges-progress" class="ml-4 text-sm text-gray-600 dark:text-gray-300"></span>
+                            <!-- Botón para reiniciar progreso -->
+                            <button id="reset-badges-btn" class="ml-2 px-2 py-1 text-xs rounded bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-red-200 hover:text-red-700 transition" title="Reiniciar progreso">
+                                <i class="fas fa-undo"></i> Reiniciar
+                            </button>
+                        </div>
                         <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
                             <div class="p-4 border-2 border-gray-200 dark:border-gray-600 rounded-lg">
                                 <div class="text-3xl mb-2 text-yellow-500">
@@ -620,6 +645,26 @@
             </div>
         </div>
     </footer>
+
+    <!-- Badges Info Modal -->
+    <div id="badges-info-modal" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 hidden">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 max-w-md w-full relative">
+            <button id="close-badges-info" class="absolute top-2 right-2 text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 text-2xl">&times;</button>
+            <h4 class="text-lg font-bold mb-2 text-yellow-600">¿Cómo funcionan las insignias?</h4>
+            <p class="mb-3 text-gray-700 dark:text-gray-200 text-sm">
+                Las insignias son logros que puedes desbloquear resolviendo correctamente los desafíos de la Ley de Ohm. Cada vez que aciertas, tu progreso se guarda automáticamente en tu navegador. ¡Intenta conseguirlas todas!
+            </p>
+            <ul class="list-disc pl-5 text-gray-700 dark:text-gray-200 text-sm space-y-2">
+                <li><b>Ohm Iniciado:</b> Se desbloquea al responder correctamente tu primer desafío.</li>
+                <li><b>Experto en V=IR:</b> Se desbloquea al acertar 5 desafíos o al resolver uno de dificultad "Medio".</li>
+                <li><b>Maestro de Circuitos:</b> Se desbloquea al acertar 10 desafíos o al resolver uno de dificultad "Difícil".</li>
+                <li><b>Leyenda de Ohm:</b> Se desbloquea al lograr 5 respuestas correctas seguidas.</li>
+            </ul>
+            <p class="mt-4 text-xs text-gray-500 dark:text-gray-400">
+                Nota: Si borras los datos del navegador, perderás tu progreso de insignias.
+            </p>
+        </div>
+    </div>
 
     <script src="scripts/script.js"></script>
 </body>
