@@ -227,6 +227,69 @@
         </div>
     </section>
 
+    <!-- Calculadora y Fórmulas Section -->
+    <section id="calculator" class="py-16 bg-white dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-8 text-center">Calculadora y Fórmulas</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+                <!-- Fórmulas -->
+                <div class="bg-white dark:bg-gray-700 rounded-xl shadow-md p-6">
+                    <h3 class="text-xl font-bold mb-2">Fórmulas</h3>
+                    <div class="space-y-3">
+                        <div class="bg-purple-50 dark:bg-purple-900 p-3 rounded-lg">
+                            <p class="text-center font-mono text-lg font-bold text-purple-800 dark:text-purple-200 mb-0">
+                                I = V / R <span class="text-sm text-gray-500 dark:text-gray-400">(Ley de Ohm)</span>
+                            </p>
+                        </div>
+                        <div class="bg-blue-50 dark:bg-blue-900 p-3 rounded-lg">
+                            <p class="text-center font-mono text-lg font-bold text-blue-800 dark:text-blue-200 mb-0">
+                                V = I × R <span class="text-sm text-gray-500 dark:text-gray-400">(Voltaje)</span>
+                            </p>
+                        </div>
+                        <div class="bg-emerald-50 dark:bg-emerald-900 p-3 rounded-lg">
+                            <p class="text-center font-mono text-lg font-bold text-emerald-800 dark:text-emerald-200 mb-0">
+                                R = V / I <span class="text-sm text-gray-500 dark:text-gray-400">(Resistencia)</span>
+                            </p>
+                        </div>
+                        <div class="bg-yellow-50 dark:bg-yellow-900 p-3 rounded-lg">
+                            <p class="text-center font-mono text-lg font-bold text-yellow-800 dark:text-yellow-200 mb-0">
+                                P = V × I <span class="text-sm text-gray-500 dark:text-gray-400">(Potencia)</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Calculadora mejorada -->
+                <div class="bg-white dark:bg-gray-700 rounded-xl shadow-md p-6">
+                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                        <i class="fas fa-calculator text-indigo-500"></i>
+                        Calculadora
+                    </h3>
+                    <form id="resource-calculator" class="space-y-4">
+                        <div>
+                            <label for="calc-type" class="block text-sm font-medium mb-1">¿Qué deseas calcular?</label>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-question-circle text-indigo-400"></i>
+                                <select id="calc-type" class="w-full rounded p-2 bg-gray-100 dark:bg-gray-800 focus:ring-2 focus:ring-indigo-400 transition">
+                                    <option value="I">Corriente (I)</option>
+                                    <option value="V">Voltaje (V)</option>
+                                    <option value="R">Resistencia (R)</option>
+                                    <option value="P">Potencia (P)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="inputs-container" class="space-y-2">
+                            <!-- Los inputs se generan dinámicamente según la selección -->
+                        </div>
+                        <button type="button" id="calc-btn" class="w-full bg-gradient-to-r from-indigo-600 to-blue-500 hover:from-indigo-700 hover:to-blue-600 text-white font-bold py-2 rounded-lg shadow-md transition transform hover:scale-105 flex items-center justify-center gap-2">
+                            <i class="fas fa-equals"></i> Calcular
+                        </button>
+                        <div id="calc-result" class="mt-4 text-center font-bold text-lg transition-all"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Learn Section -->
     <section id="learn" class="py-16 bg-white dark:bg-gray-900">
         <div class="container mx-auto px-4">
@@ -612,49 +675,7 @@
     <section id="resources" class="py-16 bg-gray-100 dark:bg-gray-800">
         <div class="container mx-auto px-4">
             <h2 class="text-3xl font-bold mb-8 text-center">Recursos</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Fórmulas -->
-                <div class="bg-white dark:bg-gray-700 rounded-xl shadow-md p-6">
-                    <h3 class="text-xl font-bold mb-2">Fórmulas</h3>
-                    <div class="space-y-3">
-                        <div class="bg-purple-50 dark:bg-purple-900 p-3 rounded-lg">
-                            <p class="text-center font-mono text-lg font-bold text-purple-800 dark:text-purple-200 mb-0">
-                                I = V / R <span class="text-sm text-gray-500 dark:text-gray-400">(Ley de Ohm)</span>
-                            </p>
-                        </div>
-                        <div class="bg-blue-50 dark:bg-blue-900 p-3 rounded-lg">
-                            <p class="text-center font-mono text-lg font-bold text-blue-800 dark:text-blue-200 mb-0">
-                                V = I × R <span class="text-sm text-gray-500 dark:text-gray-400">(Voltaje)</span>
-                            </p>
-                        </div>
-                        <div class="bg-emerald-50 dark:bg-emerald-900 p-3 rounded-lg">
-                            <p class="text-center font-mono text-lg font-bold text-emerald-800 dark:text-emerald-200 mb-0">
-                                R = V / I <span class="text-sm text-gray-500 dark:text-gray-400">(Resistencia)</span>
-                            </p>
-                        </div>
-                        <div class="bg-yellow-50 dark:bg-yellow-900 p-3 rounded-lg">
-                            <p class="text-center font-mono text-lg font-bold text-yellow-800 dark:text-yellow-200 mb-0">
-                                P = V × I <span class="text-sm text-gray-500 dark:text-gray-400">(Potencia)</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Calculadora simple -->
-                <div class="bg-white dark:bg-gray-700 rounded-xl shadow-md p-6">
-                    <h3 class="text-xl font-bold mb-2">Calculadora</h3>
-                    <form id="resource-calculator" class="space-y-2">
-                        <div>
-                            <label for="calc-voltage" class="block text-sm font-medium">Voltaje (V):</label>
-                            <input type="number" id="calc-voltage" class="w-full rounded p-2 bg-gray-100 dark:bg-gray-800" step="any">
-                        </div>
-                        <div>
-                            <label for="calc-resistance" class="block text-sm font-medium">Resistencia (Ω):</label>
-                            <input type="number" id="calc-resistance" class="w-full rounded p-2 bg-gray-100 dark:bg-gray-800" step="any">
-                        </div>
-                        <button type="button" id="calc-btn" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 rounded transition">Calcular Corriente</button>
-                        <div id="calc-result" class="mt-2 text-center font-bold"></div>
-                    </form>
-                </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                 <!-- Laboratorios virtuales -->
                 <div class="bg-white dark:bg-gray-700 rounded-xl shadow-md p-6">
                     <h3 class="text-xl font-bold mb-2">Laboratorios virtuales</h3>
@@ -664,6 +685,27 @@
                         </li>
                         <li>
                             <a href="https://www.circuitlab.com/editor/" target="_blank" rel="noopener" class="hover:underline">Editor de circuitos online</a>
+                        </li>
+                        <li>
+                            <a href="https://www.falstad.com/circuit/es-circuitjs.html" target="_blank" rel="noopener" class="hover:underline">Simulador CircuitJS</a>
+                        </li>
+                        <li>
+                            <a href="https://www.tinkercad.com/circuits" target="_blank" rel="noopener" class="hover:underline">Tinkercad Circuits</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Otros recursos -->
+                <div class="bg-white dark:bg-gray-700 rounded-xl shadow-md p-6">
+                    <h3 class="text-xl font-bold mb-2">Más recursos</h3>
+                    <ul class="list-disc pl-5 text-gray-700 dark:text-gray-200">
+                        <li>
+                            <a href="https://es.wikipedia.org/wiki/Ley_de_Ohm" target="_blank" rel="noopener" class="hover:underline">Ley de Ohm en Wikipedia</a>
+                        </li>
+                        <li>
+                            <a href="https://www.areatecnologia.com/electricidad/ejemplos-ley-de-ohm.html" target="_blank" rel="noopener" class="hover:underline">Ejemplos de la Ley de Ohm</a>
+                        </li>
+                        <li>
+                            <a href="https://www.electronicafacil.net/tutoriales/Electricidad/Resistencias.html" target="_blank" rel="noopener" class="hover:underline">Tutorial sobre resistencias</a>
                         </li>
                     </ul>
                 </div>
@@ -693,9 +735,9 @@
                 <div>
                     <h4 class="font-bold mb-4">Recursos</h4>
                     <ul class="space-y-2">
-                        <li><a href="#resources" class="text-gray-400 hover:text-white transition">Fórmulas</a></li>
-                        <li><a href="#resources" class="text-gray-400 hover:text-white transition">Calculadoras</a></li>
+                        <li><a href="#calculator" class="text-gray-400 hover:text-white transition">Calculadora y fórmulas</a></li>
                         <li><a href="#resources" class="text-gray-400 hover:text-white transition">Laboratorios virtuales</a></li>
+                        <li><a href="#resources" class="text-gray-400 hover:text-white transition">Más recursos</a></li>
                     </ul>
                 </div>
                 <div>
@@ -732,24 +774,6 @@
     </div>
 
     <script src="scripts/script.js"></script>
-    <script>
-// Calculadora de recursos
-document.addEventListener('DOMContentLoaded', function() {
-    const calcBtn = document.getElementById('calc-btn');
-    if (calcBtn) {
-        calcBtn.addEventListener('click', function() {
-            const v = parseFloat(document.getElementById('calc-voltage').value);
-            const r = parseFloat(document.getElementById('calc-resistance').value);
-            const resultDiv = document.getElementById('calc-result');
-            if (!isNaN(v) && !isNaN(r) && r !== 0) {
-                const i = v / r;
-                resultDiv.textContent = `Corriente: ${i.toFixed(3)} A`;
-            } else {
-                resultDiv.textContent = 'Por favor, ingresa valores válidos.';
-            }
-        });
-    }
-});
-</script>
+    <script src="scripts/calculadora.js"></script>
 </body>
 </html>
