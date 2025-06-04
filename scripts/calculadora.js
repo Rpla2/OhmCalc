@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const calcBtn = document.getElementById('calc-btn');
     const resultDiv = document.getElementById('calc-result');
 
+    if (!calcType || !inputsContainer || !calcBtn || !resultDiv) return;
+
     // Definición de los prefijos y factores de conversión para cada unidad
     const unitOptions = {
         voltage: [
