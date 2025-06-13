@@ -1,5 +1,4 @@
 // Módulo combinado de desafíos y gestión de insignias para Ley de Ohm
-
 (function() {
     // --- Referencias a elementos del DOM ---
     const challengeQuestion = document.getElementById('challenge-question');
@@ -15,7 +14,7 @@
     const badgesProgress = document.getElementById('badges-progress');
     const resetBadgesBtn = document.getElementById('reset-badges-btn');
 
-    // Si no existen los elementos principales, no ejecutar el módulo
+    // Verifica que los elementos existan antes de continuar
     if (!challengeQuestion || !answerInput || !checkAnswerBtn || !newChallengeBtn || !feedbackDiv || !difficultySpan) return;
 
     // --- Estado de desafíos e insignias ---
@@ -24,13 +23,18 @@
         { type: "ohm", v: 9, r: 45, dificultad: "Fácil" },
         { type: "ohm", v: 12, r: 6, dificultad: "Fácil" },
         { type: "ohm", v: 5, r: 10, dificultad: "Fácil" },
+        { type: "ohm", v: 10, r: 2, dificultad: "Fácil" },
+        { type: "ohm", v: 36, r: 12, dificultad: "Fácil" },
         { type: "ohm", v: 24, r: 8, dificultad: "Medio" },
         { type: "ohm", v: 18, r: 3, dificultad: "Medio" },
         { type: "ohm", v: 15, r: 5, dificultad: "Medio" },
+        { type: "ohm", v: 60, r: 20, dificultad: "Medio" },
+        { type: "ohm", v: 100, r: 25, dificultad: "Medio" },
         { type: "ohm", v: 230, r: 115, dificultad: "Difícil" },
         { type: "ohm", v: 120, r: 33, dificultad: "Difícil" },
-        { type: "ohm", v: 48, r: 2.2, dificultad: "Difícil" }
-        // Puedes agregar más tipos de desafíos aquí
+        { type: "ohm", v: 48, r: 2.2, dificultad: "Difícil" },
+        { type: "ohm", v: 220, r: 11, dificultad: "Difícil" },
+        { type: "ohm", v: 330, r: 15, dificultad: "Difícil" }
     ];
     let currentChallenge = null;
 
