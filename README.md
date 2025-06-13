@@ -29,7 +29,7 @@ OhmCalc/
 
 1. **Descarga o clona el repositorio:**
    ```
-   git clone <https://github.com/Rpla2/OhmCalc>
+   git clone https://github.com/Rpla2/OhmCalc
    ```
 2. **Abre `index.html` en tu navegador favorito.**
    - No requiere instalación de dependencias ni servidor.
@@ -44,6 +44,7 @@ OhmCalc/
 - Licencia: MIT
 
 ## Capturas de pantalla
-
+![Captura de navegación](images/cap_nav.png)
+![Captura de navegación](images/cap_desa.png)
 ## Contribuciones
 ¡Las contribuciones son bienvenidas! Puedes abrir issues o pull requests para sugerir mejoras o reportar errores.
