@@ -14,15 +14,17 @@ OhmCalc es una aplicación web interactiva para aprender, practicar y experiment
 ## Estructura del proyecto
 
 ```
-OhmCalc/
-├── index.html                # Página principal
-├── styles/
-│   └── style.css             # Estilos personalizados y animaciones
-├── scripts/
-│   ├── script.js             # Lógica general, simulador y modales
-│   ├── calculadora.js        # Lógica de la calculadora de Ohm
-│   └── desafios.js           # Desafíos y gestión de insignias
-└── LICENSE
+└── ohmcalc/
+    ├── README.md
+    ├── index.html                # Página principal
+    ├── LICENSE
+    ├── images/
+    ├── scripts/
+    │  ├── script.js             # Lógica general, simulador y modales
+    │  ├── calculadora.js        # Lógica de la calculadora de Ohm
+    │  └── desafios.js              # Desafíos y gestión de insignias
+    └── styles/
+        └── style.css            # Estilos personalizados y animaciones
 ```
 
 ## Instalación y uso
